@@ -1,0 +1,31 @@
+```scala
+class MyClass(val x: Int) {
+  def this() = this(0) // Auxiliary constructor
+}
+
+val obj = new MyClass()
+println(obj.x) //prints 0
+
+class AnotherClass(val x: Int) {
+  def this(s: String) = this(s.length)
+}
+
+val obj2 = new AnotherClass("hello")
+println(obj2.x) //prints 5
+
+class GoodClass(val x: Int) {
+  def this(s: String) = {
+    try {
+      this(s.toInt)
+    } catch {
+      case e: NumberFormatException => this(0) // Handle the exception, use a default value or throw a custom exception
+    }
+  }
+}
+
+val obj3 = new GoodClass("hello") //this will print 0
+println(obj3.x)
+
+val obj4 = new GoodClass("123") //this will print 123
+println(obj4.x)
+```
